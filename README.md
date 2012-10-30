@@ -5,3 +5,6 @@ when a [SHiFT code](http://support.gearboxsoftware.com/home) is
 posted.  This will help you redeem shift codes before they expire.
 
 It does not read [facebook](http://facebook.com/) currently.
+
+See the `config.example.yml` for setup information.  The script requires a
+twitter account and an email account (smtp).
