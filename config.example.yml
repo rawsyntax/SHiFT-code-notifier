@@ -1,0 +1,7 @@
+:email:
+  :user: user@example.com
+  :password: password
+
+:twitter:
+  :user: user
+  :password: password
