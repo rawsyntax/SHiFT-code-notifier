@@ -5,3 +5,5 @@
 :twitter:
   :user: user
   :password: password
+
+:shift_type: "pc" # or xbox, or ps3
