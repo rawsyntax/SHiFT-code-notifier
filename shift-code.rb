@@ -19,8 +19,9 @@ end
 
 # gearboxsoftware user id 16567106
 # duvalmagic id 8369072
+# echocasts id 846328884
 # example code CBKBB-RSJZH-RTBJJ-3TT3T-5RXZC
-TweetStream::Client.new.follow(16567106, 8369072) do |status|
+TweetStream::Client.new.follow(16567106, 8369072, 846328884) do |status|
   # skip replies to user, the API's value of reply_to is inconsistent
   next if status.text =~ /@\S+/
 
