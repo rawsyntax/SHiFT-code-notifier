@@ -4,6 +4,19 @@ require 'tweetstream'
 require 'pony'
 require 'yaml'
 
+def has_shift_code?(status, cfg)
+  # shift codes typically expire in 3 hours
+  three_hours_ago = Time.now.utc - 10800
+
+  code_in_text = status.text =~ /\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/ &&
+    status.created_at > three_hours_ago &&
+    status.text.downcase.include?(cfg[:shift_type].downcase)
+
+  (code_in_text) ||
+    (status.text.downcase.include?("shift code") &&
+     status.text.downcase.include?("http"))
+end
+
 def watch_twitter(cfg)
   puts "started watching twitter"
 
@@ -15,13 +28,8 @@ def watch_twitter(cfg)
     # skip replies to user, the API's value of reply_to is inconsistent
     next if status.text =~ /@\S+/
 
-    # shift codes typically expire in 3 hours
-    three_hours_ago = Time.now.utc - 10800
-
-    if status.text =~ /\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/ &&
-        status.created_at > three_hours_ago &&
-        status.text.downcase.include?(cfg[:shift_type].downcase)
-      puts "mailing: #{status.text}"
+    if has_shift_code?(status, cfg)
+      puts "mail: #{status.text}"
       Pony.
         mail({
                :to => cfg[:email][:to],
@@ -40,7 +48,7 @@ def watch_twitter(cfg)
                }
              })
     else
-      puts "NO MATCH #{status.text}"
+      puts "IGNORE #{status.text}"
     end
   end
 end
