@@ -1,9 +1,10 @@
+---
 :email:
-  :user: user@example.com
+  :user: username@example.com
   :password: password
-
+  :to: somebody@example.com
+  :cc: somebodyelse@example.com, andhisfriend@example.com
 :twitter:
-  :user: user
-  :password: password
-
+  :user: twitter_user
+  :password: twitter_pass
 :shift_type: "pc" # or xbox, or ps3
