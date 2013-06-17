@@ -24,7 +24,9 @@ def watch_twitter(cfg)
   # duvalmagic id 8369072
   # echocasts id 846328884
   # example code CBKBB-RSJZH-RTBJJ-3TT3T-5RXZC
-  TweetStream::Client.new.follow(16567106, 8369072, 846328884) do |status|
+  TweetStream::Client.new(username: cfg[:twitter][:user],
+                          password: cfg[:twitter][:password]).
+    follow(16567106, 8369072, 846328884) do |status|
     # skip replies to user, the API's value of reply_to is inconsistent
     next if status.text =~ /@\S+/
 
@@ -59,12 +61,6 @@ cfg =
   rescue Errno::ENOENT
     raise "no config.yml found, see config.example.yml"
   end
-
-TweetStream.configure do |config|
-  config.username    = cfg[:twitter][:user]
-  config.password    = cfg[:twitter][:password]
-  config.auth_method = :basic
-end
 
 while(1)
   begin
