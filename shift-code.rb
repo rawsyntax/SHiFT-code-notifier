@@ -32,23 +32,23 @@ def watch_twitter(cfg)
 
     if has_shift_code?(status, cfg)
       puts "mail: #{status.text}"
-      Pony.
-        mail({
-               :to => cfg[:email][:to],
-               :cc => cfg[:email][:cc],
-               :via => :smtp,
-               :subject => "SHiFT Codes",
-               :body => status.text
-               :via_options => {
-                 :address              => 'smtp.gmail.com',
-                 :port                 => '587',
-                 :enable_starttls_auto => true,
-                 :user_name            => cfg[:email][:user],
-                 :password             => cfg[:email][:password],
-                 :authentication       => :plain,
-                 :domain               => "localhost.localdomain"
-               }
-             })
+
+      Pony.mail({
+        to:          cfg[:email][:to],
+        cc:          cfg[:email][:cc],
+        via:         :smtp,
+        subject:     'SHiFT Codes',
+        body:        status.text,
+        via_options: {
+          address:              'smtp.gmail.com',
+          port:                 '587',
+          enable_starttls_auto: true,
+          user_name:            cfg[:email][:user],
+          password:             cfg[:email][:password],
+          authentication:       :plain,
+          domain:               'localhost.localdomain'
+        }
+      })
     else
       puts "IGNORE #{status.text}"
     end
