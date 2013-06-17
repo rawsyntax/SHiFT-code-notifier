@@ -13,12 +13,12 @@ def has_shift_code?(status, cfg)
     status.text.downcase.include?(cfg[:shift_type].downcase)
 
   (code_in_text) ||
-    (status.text.downcase.include?("shift code") &&
-     status.text.downcase.include?("http"))
+    (status.text.downcase.include?('shift code') &&
+     status.text.downcase.include?('http'))
 end
 
 def watch_twitter(cfg)
-  puts "started watching twitter"
+  puts 'started watching twitter'
 
   # gearboxsoftware user id 16567106
   # duvalmagic id 8369072
@@ -57,9 +57,9 @@ end
 
 cfg =
   begin
-    YAML.load_file("config.yml")
+    YAML.load_file('config.yml')
   rescue Errno::ENOENT
-    raise "no config.yml found, see config.example.yml"
+    raise 'no config.yml found, see config.example.yml'
   end
 
 while(1)
