@@ -38,7 +38,7 @@ def watch_twitter(cfg)
                :cc => cfg[:email][:cc],
                :via => :smtp,
                :subject => "SHiFT Codes",
-               :body => status.text + "\n\n also check http://www.facebook.com/borderlandsgame",
+               :body => status.text
                :via_options => {
                  :address              => 'smtp.gmail.com',
                  :port                 => '587',
