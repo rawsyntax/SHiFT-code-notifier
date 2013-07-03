@@ -62,6 +62,10 @@ cfg =
     raise 'no config.yml found, see config.example.yml'
   end
 
+TweetStream.configure do |config|
+  cfg[:twitter].each { |k, v| config.send("#{k}=", v) }
+end
+
 while(1)
   begin
     watch_twitter(cfg)

@@ -5,6 +5,9 @@
   :to: somebody@example.com
   :cc: somebodyelse@example.com, andhisfriend@example.com
 :twitter:
-  :user: twitter_user
-  :password: twitter_pass
+  :consumer_key: ''
+  :consumer_secret: ''
+  :oauth_token: ''
+  :oauth_token_secret: ''
+  :auth_method: :oauth
 :shift_type: "pc" # or xbox, or ps3
